@@ -12,6 +12,7 @@ model = None  # Declare model as a global variable
 try:
     with open('house_price_model.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
+
 except FileNotFoundError:
     st.error("Model file not found. Make sure the file path is correct.")
 except Exception as e:
