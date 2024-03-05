@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 
+model = None  # Declare model as a global variable
+
 # Load the model and scaler
 try:
     with open('house_price_model.pkl', 'rb') as model_file:
