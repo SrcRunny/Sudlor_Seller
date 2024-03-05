@@ -7,8 +7,13 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 
 
-with open('house_price_model.pkl', 'rb') as model_file:
-    model = pickle.load(model_file)
+try:
+    with open('house_price_model.pkl', 'rb') as model_file:
+        model = pickle.load(model_file)
+except FileNotFoundError:
+    st.error("Model file not found. Make sure the file path is correct.")
+except Exception as e:
+    st.error(f"Error loading the model: {e}")
 
 with open('scaler.pkl', 'rb') as scaler_file:
     scaler = pickle.load(scaler_file)
