@@ -20,25 +20,6 @@ with open('scaler.pkl', 'rb') as scaler_file:
 
 data = pd.read_csv("train.csv")
 
-dark_theme = """
-    <style>
-        body {
-            background-color: #2E2E2E;
-            color: white;
-        }
-        .stSlider span {
-            color: white;
-        }
-        .st-bj {
-            background-color: #2E2E2E;
-        }
-        .st-cq {
-            color: black;
-        }
-    </style>
-"""
-st.markdown(dark_theme, unsafe_allow_html=True)
-
 def main():
     st.title("House Price Prediction")
     st.markdown("(refer from 79 peoples in residential homes in Ames, Iowa)")
