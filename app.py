@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 
-
+# Load the model and scaler
 try:
     with open('house_price_model.pkl', 'rb') as model_file:
         model = pickle.load(model_file)
