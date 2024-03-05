@@ -5,13 +5,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import StandardScaler
+from tensorflow.keras.models import load_model
+
 
 model = None  # Declare model as a global variable
 
 # Load the model and scaler
 try:
-    with open('house_price_model.pkl', 'rb') as model_file:
-        model = pickle.load(model_file)
+    model = load_model('house_price_model.h5')
 
 except FileNotFoundError:
     st.error("Model file not found. Make sure the file path is correct.")
