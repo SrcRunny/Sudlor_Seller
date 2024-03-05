@@ -102,7 +102,7 @@ def main():
 
             # Access the first element of the prediction array before formatting
             predicted_price = prediction[0][0]
-
+            st.snow()
             st.success(f"The predicted house price in {future_year} is: ${'{:,.2f}'.format(predicted_price)}")
         except Exception as e:
             st.error(f"Error during prediction: {e}")
