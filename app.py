@@ -81,13 +81,33 @@ def main():
     future_year = st.number_input("Future Year for Prediction", min_value=2023, max_value=2050, step=1, value=2023)
 
     if st.button("Predict"):
-        input_data = np.array([[overall_qual, grliv_area, garage_cars, full_bath, future_year]])
-        scaled_input = scaler.transform(input_data)  # Scale input features
-        prediction = model.predict(scaled_input)
+        try:
+            # Wrap the prediction in a try-except block
+            input_data = np.array([[overall_qual, grliv_area, garage_cars, full_bath, future_year]])
+            scaled_input = scaler.transform(input_data)  # Scale input features
 
-        st.success(f"The predicted house price in {future_year} is: ${prediction[0][0]:,.2f}")
+            # Print statements for debugging
+            print(f"Scaled Input Shape: {scaled_input.shape}")
+            print(f"Model Input Shape: {model.input_shape}")
+
+            prediction = model.predict(scaled_input)
+
+            # Print statements for debugging
+            print(f"Prediction Shape: {prediction.shape}")
+            print(f"Predicted Price (Before Formatting): {prediction[0][0]}")
+
+            # Access the first element of the prediction array before formatting
+            predicted_price = prediction[0][0]
+
+            st.success(f"The predicted house price in {future_year} is: ${'{:,.2f}'.format(predicted_price)}")
+        except Exception as e:
+            st.error(f"Error during prediction: {e}")
+            # Print the traceback for further analysis
+            import traceback
+            traceback.print_exc()
 
         visualize_data(data, overall_qual, grliv_area, garage_cars, full_bath)
+
 def visualize_data(data, overall_qual, grliv_area, garage_cars, full_bath):
     st.subheader("Data Visualization")
 
@@ -122,4 +142,3 @@ def visualize_data(data, overall_qual, grliv_area, garage_cars, full_bath):
 
 if __name__ == "__main__":
     main()
-
